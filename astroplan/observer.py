@@ -622,7 +622,7 @@ class Observer(object):
             jd_lims2[np.nonzero(noncrossing_indices)] = np.nan
 
         before_indices = np.array(np.nonzero(condition))
-        # we want to add an vector like (0, 1, ...) to get after indices
+        # we want to add a vector like (0, 1, ...) to get after indices
         after_indices = before_indices.copy()
         after_indices[1, :] += 1
 
@@ -653,7 +653,7 @@ class Observer(object):
                           alt_before, alt_after, horizon=0*u.deg):
         """
         Do linear interpolation between two ``altitudes`` at
-        two ``times`` to determine the time where the altitude
+        two ``times`` to determine the time at which the altitude
         goes through zero.
 
         Parameters
@@ -693,7 +693,7 @@ class Observer(object):
         # If there are, set them equal to zero, rather than np.nan
         crossing_jd[nans] = 0
         times = Time(crossing_jd, format='jd')
-        # Create a Time object with masked out times where there were NaNs
+        # Create a Time object with masked-out times for which there were NaNs
         times[nans] = np.ma.masked
 
         return np.squeeze(times)
@@ -981,7 +981,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields rise time precisions better than one minute.
 
         Returns
@@ -1047,7 +1047,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields set time precisions better than one minute.
 
         Returns
@@ -1107,7 +1107,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields rise time precisions better than one minute.
 
         Returns
@@ -1167,7 +1167,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields rise time precisions better than one minute.
 
         Returns
@@ -1225,7 +1225,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields rise time precisions better than one minute.
 
         Returns
@@ -1276,7 +1276,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields set time precisions better than one minute.
 
         Returns
@@ -1317,7 +1317,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields noon time precisions better than one minute.
 
         Returns
@@ -1346,7 +1346,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields midnight time precisions better than one minute.
 
         Returns
@@ -1377,7 +1377,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields twilight time precisions better than one minute.
 
         Returns
@@ -1406,7 +1406,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields twilight time precisions better than one minute.
 
         Returns
@@ -1435,7 +1435,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields twilight time precisions better than one minute.
 
         Returns
@@ -1464,7 +1464,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields twilight time precisions better than one minute.
 
         Returns
@@ -1493,7 +1493,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields twilight time precisions better than one minute.
 
         Returns
@@ -1522,7 +1522,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields twilight time precisions better than one minute.
 
         Returns
@@ -1562,7 +1562,7 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields rise time precisions better than one minute.
         """
         return self.target_rise_time(time, MoonFlag, which, horizon,
@@ -1595,13 +1595,14 @@ class Observer(object):
 
         n_grid_points : int (optional)
             The number of grid points on which to search for the horizon
-            crossings of the target over a 24 hour period, default is 150 which
+            crossings of the target over a 24-hour period, default is 150 which
             yields set time precisions better than one minute.
         """
         return self.target_set_time(time, MoonFlag, which, horizon,
                                     n_grid_points=n_grid_points)
 
-    def moon_illumination(self, time):
+    @staticmethod
+    def moon_illumination(time):
         """
         Calculate the illuminated fraction of the moon.
 
@@ -1635,7 +1636,8 @@ class Observer(object):
 
         return moon_illumination(time)
 
-    def moon_phase(self, time=None):
+    @staticmethod
+    def moon_phase(time=None):
         """
         Calculate lunar orbital phase.
 
@@ -1725,12 +1727,6 @@ class Observer(object):
             the `~astropy.time.Time` initializer, so it can be anything that
             `~astropy.time.Time` will accept (including a `~astropy.time.Time`
             object).
-
-        ephemeris : str, optional
-            Ephemeris to use.  If not given, use the one set with
-            ``astropy.coordinates.solar_system_ephemeris.set`` (which is
-            set to 'builtin' by default).
-
 
         Returns
         -------

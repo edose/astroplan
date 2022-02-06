@@ -30,7 +30,7 @@ class ObservingBlock(object):
     constraints on observations.
     """
     @u.quantity_input(duration=u.second)
-    def __init__(self, target, duration, priority, configuration={}, constraints=None, name=None):
+    def __init__(self, target, duration, priority, configuration=None, constraints=None, name=None):
         """
         Parameters
         ----------
@@ -59,7 +59,7 @@ class ObservingBlock(object):
         self.target = target
         self.duration = duration
         self.priority = priority
-        self.configuration = configuration
+        self.configuration = {} if configuration is None else configuration
         self.constraints = constraints
         self.name = name
         self.start_time = self.end_time = None
@@ -89,8 +89,9 @@ class ObservingBlock(object):
     @classmethod
     def from_exposures(cls, target, priority, time_per_exposure,
                        number_exposures, readout_time=0 * u.second,
-                       configuration={}, constraints=None):
+                       configuration=None, constraints=None):
         duration = number_exposures * (time_per_exposure + readout_time)
+        configuration = {} if configuration is None else configuration
         ob = cls(target, duration, priority, configuration, constraints)
         ob.time_per_exposure = time_per_exposure
         ob.number_exposures = number_exposures
@@ -104,7 +105,7 @@ class Scorer(object):
     observing blocks
     """
 
-    def __init__(self, blocks, observer, schedule, global_constraints=[]):
+    def __init__(self, blocks, observer, schedule, global_constraints=None):
         """
         Parameters
         ----------
@@ -120,12 +121,12 @@ class Scorer(object):
         self.blocks = blocks
         self.observer = observer
         self.schedule = schedule
-        self.global_constraints = global_constraints
+        self.global_constraints = [] if global_constraints is None else global_constraints
         self.targets = get_skycoord([block.target for block in self.blocks])
 
     def create_score_array(self, time_resolution=1*u.minute):
         """
-        this makes a score array over the entire schedule for all of the
+        Makes a score array over the entire schedule for all
         blocks and each `~astroplan.Constraint` in the .constraints of
         each block and in self.global_constraints.
 
@@ -157,11 +158,12 @@ class Scorer(object):
 
     @classmethod
     def from_start_end(cls, blocks, observer, start_time, end_time,
-                       global_constraints=[]):
+                       global_constraints=None):
         """
         for if you don't have a schedule/ aren't inside a scheduler
         """
         dummy_schedule = Schedule(start_time, end_time)
+        global_constraints = [] if global_constraints is None else global_constraints
         sc = cls(blocks, observer, dummy_schedule, global_constraints)
         return sc
 
@@ -742,7 +744,7 @@ class PriorityScheduler(Scheduler):
         times = time_grid_from_range([self.schedule.start_time, self.schedule.end_time],
                                      time_resolution=time_resolution)
 
-        # generate the score arrays for all of the blocks
+        # Generate score arrays for all blocks
         scorer = Scorer(blocks, self.observer, self.schedule,
                         global_constraints=self.constraints)
         score_array = scorer.create_score_array(time_resolution)

@@ -6,7 +6,7 @@ additions for astroplan.  Py.test looks for specially-named functions
 Here, we want to keep the behavior of astropy while *adding* more for astroplan.
 To do that, in the functions below, we first invoke the functions from astropy,
 and then after that do things specific to astroplan.  But we also want astropy
-functionality for any functions we have *not* overriden, so that's why the
+functionality for any functions we have *not* overridden, so that's why the
 ``import *`` happens at the top.
 """
 try:

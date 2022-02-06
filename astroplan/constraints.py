@@ -375,7 +375,7 @@ class AirmassConstraint(AltitudeConstraint):
         Maximum airmass of the target. `None` indicates no limit.
     min : float or `None`
         Minimum airmass of the target. `None` indicates no limit.
-    boolean_contstraint : bool
+    boolean_constraint : bool
 
     Examples
     --------
@@ -1177,7 +1177,7 @@ def observability_table(constraints, observer, targets, times=None,
         Lower and upper bounds on time sequence, with spacing
         ``time_resolution``. This will be passed as the first argument into
         `~astroplan.time_grid_from_range`. If a single (scalar) time, the table
-        will be for a 24 hour period centered on that time.
+        will be for a 24-hour period centered on that time.
 
     time_grid_resolution : `~astropy.units.Quantity` (optional)
         If ``time_range`` is specified, determine whether constraints are met
@@ -1190,7 +1190,7 @@ def observability_table(constraints, observer, targets, times=None,
     observability_table : `~astropy.table.Table`
         A Table containing the observability information for each of the
         ``targets``. The table contains four columns with information about the
-        target and it's observability: ``'target name'``, ``'ever observable'``,
+        target and its observability: ``'target name'``, ``'ever observable'``,
         ``'always observable'``, and ``'fraction of time observable'``. The
         column ``'time observable'`` will also be present if the ``time_range``
         is given as a scalar. It also contains metadata entries ``'times'``

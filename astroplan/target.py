@@ -12,7 +12,7 @@ from astropy.coordinates import SkyCoord, ICRS, UnitSphericalRepresentation
 __all__ = ["Target", "FixedTarget", "NonFixedTarget"]
 
 # Docstring code examples include printed SkyCoords, but the format changed
-# in astropy 1.3. Thus the doctest needs astropy >=1.3 and this is the
+# in astropy 1.3. Thus, the doctest needs astropy >=1.3, and this is the
 # easiest way to make it work.
 
 __doctest_requires__ = {'FixedTarget.*': ['astropy.modeling.Hermite1D']}
@@ -188,13 +188,14 @@ class NonFixedTarget(Target):
     """
     Placeholder for future function.
     """
+    raise NotImplementedError()
 
 
 def get_skycoord(targets):
     """
     Return an `~astropy.coordinates.SkyCoord` object.
 
-    When performing calculations it is usually most efficient to have
+    When performing calculations, it is usually most efficient to have
     a single `~astropy.coordinates.SkyCoord` object, rather than a
     list of `FixedTarget` or `~astropy.coordinates.SkyCoord` objects.
 
